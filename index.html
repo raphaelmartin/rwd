@@ -1,1 +1,239 @@
-My Page
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TP3 - RWD</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">TP3 - RWD</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Les surfaces écrans</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">Les images responsives</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="img/profile.png" width="256" height="256" alt="">
+                    <div class="intro-text">
+                        <span class="name">TP3</span>
+                        <hr class="star-light">
+                        <span class="skills">Responsive Web Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Les surfaces écrans</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-lg-10">
+                <h3>SURFACE RÉELLE</h3>
+
+C'est le nombre physique de pixels qui composent l’écran. On le dénomme par le qualificatif : définition. Voici par exemple un écran de 2560x1440pixels. C’est sa surface.
+
+<img class="img-responsive" src="img/img.png" width="500px" alt="">
+
+Quelques exemples de surfaces réelles de terminaux divers:
+Smartphone:
+
+Tablette:
+
+On remarque très logiquement que plus la surface réelle est grande, plus l’écran sera grand.
+
+
+<h3>CSS PIXEL</h3>
+
+La vérité c’est qu’il y a deux définitions au mot pixel: il peuvent être la plus petite unité qu’un écran comporte (le pixel qu’on parle dans la surface réelle) ; ou soit être basé sur une unité optique cohérente appellé “pixel de référence”. (le pixel CSS).
+
+Ainsi, le pixel CSS, plus communément appelé “device independant pixels” (DIPs) est le nombre de pixels virtuels que le terminal pense avoir et sur lequel il fonde son affichage. Pour des raisons de rétrocompatibilité, les constructeurs se basent sur cette unité de pixel qui demeure identique quelle que soit la résolution. La valeur du device-width d’un périphérique est donc non pas exprimée en pixels mais en DIPs.
+
+
+<h3>PIXEL RATIO</h3>
+
+Le “pixel ratio” correspond ainsi au rapport entre les pixel réels (hardware) et les pixels CSS (software). Par exemple, l’iPhone 4 est décrit par un pixel ratio de 2 car sa définition en pixel physique est le double de sa définition en pixel CSS.
+
+Surface réelle : 960 x 640
+Pixels CSS: 480 x 320
+Il y a donc 2 pixels de surface réelle pour un pixel CSS.
+Avec ces deux définitions, nous pouvons remarquer le rapport suivant:
+
+width/pixel ratio = device width.
+
+<h3>VIEWPORT</h3>
+
+On parle souvent à tort de “screen size” (taille de l’écran) mais nous devrions parler de viewport.
+
+<img class="img-responsive" src="img/img2.jpg" alt="">
+
+On pourrait dire que le viewport, c’est tout ce qui commence avec la balise < html > et ce qui finit avec < /html>. Le viewport c’est la surface du navigateur.
+
+<h3>RESOLUTION</h3>
+
+A ne pas confondre avec définition, la résolution, c’est le nombre de pixel contenu dans un pouce (2,54cm). Cela n’a donc rien à voir avec la définition d’un écran, on peux d’ailleurs avoir deux écrans de même définition mais avec une résolution différente : l’iPhone 3GS et l’iPhone 4.
+Plus la résolution est grande, plus les pixels seront petits (on arrive à en caser plus sur moins de place). Conclusion: en rendu final, les pixels seront moins visibles, cela représente donc un argument marketing fort car la différence entre qualité print et écran se réduit chaque année un peu plus.
+
+<img class="img-responsive" src="img/img3.png" width="700px" alt="">
+
+
+
+Grâce à toutes ces informations, nous pouvons maintenant comprendre la fameuse déclaration HTML5 qui rend tout site “responsivable” :
+
+<img class="img-responsive" src="img/img4.png" alt="">
+</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Les images responsives</h2>
+                    <hr class="star-gazer">
+                </div>
+            </div>
+            <div class="row">
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>A propos</h3>
+                        <p>Raphaël Martin<br>Etudiant en MMI2, groupe A</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; 2014
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visble-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>
