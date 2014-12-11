@@ -206,6 +206,10 @@ picture / source</p>
 
 <strong>SRCSET/SIZES</strong>
 
+<p>
+<img class="img-responsive" src="img/quarter.png" alt="">
+</p>
+
 <p>La première technique pour créer des images responsive est l’élément “srcset”, accolés à son ami “sizes”. Nous allons voir en quoi ces deux éléments sont magiques.</p>
 
 <p>Le gros du problème avec les images, c’est le partage d’information. En effet, certaines variables sont connus seulement par l’intégrateur, quand d’autres sont connus seulement par le navigateur.</p>
@@ -235,7 +239,7 @@ A la deuxième ligne, entre en scène SRCSET. Chaque ligne correspond à une sur
 <p>C’est tout! Avec ces deux éléments, le navigateur devient super intelligent et délivre ainsi des images intelligentes.</p>
 
 <p>Petite démo avec le code précédent:</p>
-
+<p>
 <img src="img/small.jpg"
      srcset="img/large.jpg 1024w,
              img/medium.jpg 640w,
@@ -243,6 +247,58 @@ A la deuxième ligne, entre en scène SRCSET. Chaque ligne correspond à une sur
      sizes="(min-width: 36em) 33.3vw,
             100vw"
      alt="A rad wolf" />
+</p>
+<strong>PICTURE/SOURCE</strong>
+
+<p>Le seul défaut de l’élément SRCSET, c’est qu’on donne toutes les infos aux navigateurs, et c’est ce dernier qui a le contrôle sur l’image qui sera délivré à l’utilisateur final. En effet, les media query que l’on peut insérer dans l’attribut “sizes” ne servent qu’à donner une indication sur la proportion de l’image dans le viewport, mais pas de l’image en elle-même. Certains critiquent même le fait que l’élément “srcset” soit trop permissif de ce point de vue et que tout est “au bon vouloir” du navigateur, laissant la possibilité que l’affichage diffère d’un navigateur à un autre.</p>
+
+<p>Ce petit problème, s’il n’est pas génant, n’est pas présent avec l’élément PICTURE, où l’intégrateur reprend pleinement son rôle de magicien du code. Avec picture, on va pouvoir spécifier tel image pour tel configuration d’écran:</p>
+
+
+<pre>
+<code>
+&lt;picture&gt;
+&lt;source srcset="runner-wide.jpg" media="(min-width: 1000px)"&gt;
+&lt;source srcset="runner-narrow.jpg" media="(min-width: 500px)"&gt;
+&lt;img src="runner-square.jpg" alt="Photograph of a man running along a pier at sunset, with a harbour in the background"&gt;
+&lt;/picture>
+</code>
+</pre>
+
+<p>Expliquons par l’exemple. On voit dans ce snippet de code que l’élément picture n’est qu’un “wrapper” de l’élément ancestral < img > qui agit ici comme un fallback (oui ça fait beaucoup d’anglais dans une phrase française).</p>
+
+<p>Picture est accolé à l’élément “source” qui, de part son attribut SRCSET identifie une image. A l’inverse de la technique srcset/sizes où l’intégrateur donnait une donnée de taille sur l’image, là c’est nous qui allons donner un ordre de taille quant aux viewports que nous désirons viser. Pour l’exemple du runner-wide.jpg par exemple, nous visons les périphériques ayant une largeur minimale de 1000px. Sinon le navigateur passe à la 2ème ligne. Si le viewport a une width comprise entre 500 et 1000 alors ce sera runner-narrow.jpg qui sera chargé. Sinon, le viewport étant en dessous de 500pixels de large, c’est l’élément wrappé < img > qui prendra le relais avec l’image runner-square.jpg.</p>
+
+<p>Attention à l’ordre des sources! En effet, les éléments source doivent respecter un ordre précis si on ne veux pas que le navigateur charge le mauvais élément, il faut qu’ils soient classés dans l’ordre décroissant en min-width (plus grand viewport au plus petit) et du plus grand au plus petit en max-width.</p>
+
+<p>Mauvais exemple:
+
+<pre>
+<code>
+&lt;picture&gt;
+    &lt;source srcset="small.jpg" media="(min-width: 768px)"&gt;
+&lt;source srcset="wider.jpg" media="(min-width: 1024px)"&gt;
+    &lt;source srcset="small.jpg"&gt;
+    &lt;img srcset="default.jpg" alt="My default image"&gt;
+&lt;/picture&gt;
+</code>
+</pre>
+
+</p>
+
+<p>Imaginons l’exemple d’un périphérique à 1024w, son image adapté est donc wider.jpg mais il ne la verra jamais car la première condition est respecté (il a bien une surface plus grande que 768px). Il téléchargera donc de manière erronée small.jpg.</p>
+
+<p>Démonstration avec le code précédent:</p>
+</div>
+
+<div class="col-lg-12">
+<picture>
+<source srcset="img/runner-wide.jpg" media="(min-width: 1000px)">
+<source srcset="img/runner-narrow.jpg" media="(min-width: 500px)">
+<img src="img/runner-square.jpg" alt="Photograph of a man running along a pier at sunset, with a harbour in the background">
+</picture>
+</div>
+
 </div>
             </div>
         </div>
@@ -253,29 +309,10 @@ A la deuxième ligne, entre en scène SRCSET. Chaque ligne correspond à une sur
         <div class="footer-above">
             <div class="container">
                 <div class="row">
-                    <div class="footer-col col-md-4">
+                  
+                    <div class="footer-col col-md-4 col-md-offset-4">
                         <h3>A propos</h3>
                         <p>Raphaël Martin<br>Etudiant en MMI2, groupe A</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -308,10 +345,6 @@ A la deuxième ligne, entre en scène SRCSET. Chaque ligne correspond à une sur
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
