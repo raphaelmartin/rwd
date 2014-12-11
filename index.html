@@ -99,10 +99,11 @@
 
 <img class="img-responsive" src="img/img.png" width="500px" alt="">
 
-Quelques exemples de surfaces réelles de terminaux divers:
-Smartphone:
-
-Tablette:
+Quelques exemples de surfaces réelles de terminaux divers:<br>
+iPhone 4(4, 4S) : 640x960<br>
+Galaxy SIII : 720x1280<br>
+Nokia Lumia 520 : 480x800<br>
+Apple iPad 3/4 : 1536x2048<br>
 
 On remarque très logiquement que plus la surface réelle est grande, plus l’écran sera grand.</p>
 
@@ -161,7 +162,88 @@ Grâce à toutes ces informations, nous pouvons maintenant comprendre la fameuse
                 </div>
             </div>
             <div class="row">
-                
+            <div class="col-lg-8 col-lg-offset-2">
+<h3>Quelles solutions pour des images responsives?</h3>
+
+<p>62% de la taille du web n’est constitué que d’images, et nous en envoyons chaque jour toujours plus. Et pourtant, de toutes ces images, on en fait bien peu cas. En effet, même si on entend partout et tout le temps que le web est au “responsive”, que l’industrie entière a pris ce mouvement a bras le corps, les images ont littéralement été mise de côté de ce grand chamboulement. Leur seul possibilité, dans le code, est d’être coincé entre une balise < img > et son attribut src.<br>
+Etre une image ou ne pas être. C’est tout.<br>
+Bien évidemment, les développeurs avaient le choix. Soit ils rendaient leurs site moins décoré pour certains, ou soit plus lent pour tous. Ils ont choisi la dernière option, délivrant des images en résolution toujours plus grande. Ainsi, on peux parler de gâchis.</p>
+
+<h4>Au présent</h4>
+
+<p>En effet, a quoi ressemble l’univers des image aujourd’hui? A pas grand chose.</p>
+
+<p>Lorsque l’on insère une image dans nos pages web, il y a de fortes chances pour que nous utilisions un code semblable à :
+
+<pre>
+<code>
+&lt;img src="mon-image.jpg" width="850" height="475" alt=""&gt;
+</code>
+</pre></p>
+
+<p>Tout ce qu’on dit ici c’est de réserver une boite de taille fixe et d’y mettre une image. En 2014, avec l’explosion des surfaces d’écran diverses et variées, l’arrivée des smartwatch, la pénétration du smartphone en milieux en développement, c’est tout ce que nous avons en HTML5/CSS.</p>
+
+<p>Alors oui, tel Bootstrap, on peut rajouter un peu de “responsiveness”:
+
+<pre>
+<code>
+img {
+    max-width: 100%;
+    height: auto;
+}
+</code>
+</pre>
+</p>
+
+<p>Mais c’est de la triche. On conviendra que charger une image de 850 x 475 px n'est pas très adapté sur un écran de 320 px de large (si on prend comme exemple la largeur actuelle gérée par l'iPhone). Une image de cette taille pèse environ 150 Ko (compression de 40% sur une photographie), là où une image adaptée de 320 x 179 px ferait environ 23 Ko avec la même compression. Soit une différence de 127 Ko, multiplié par le nombre d'images du même genre dans votre page.</p>
+
+<p>Mais heureusement, car il faut bien une fin heureuse, quelques éléments commencent à émerger et vont sauver les images:<br>
+
+srcset / sizes<br>
+picture / source</p>
+
+<h4>Au futur</h4>
+
+<strong>SRCSET/SIZES</strong>
+
+<p>La première technique pour créer des images responsive est l’élément “srcset”, accolés à son ami “sizes”. Nous allons voir en quoi ces deux éléments sont magiques.</p>
+
+<p>Le gros du problème avec les images, c’est le partage d’information. En effet, certaines variables sont connus seulement par l’intégrateur, quand d’autres sont connus seulement par le navigateur.</p>
+
+<p>Par exemple, les dimensions du viewport de l’utilisateur final? C’est le navigateur qui les connait. L’espace que va prendre l’image au sein du viewport? C’est l’intégrateur. La densité de pixel de l’écran? Le navigateur. Les dimensions de l’image? L’intégrateur.</p>
+
+<p>On remarque ainsi un balancement d’informations entre navigateur/intégrateur. Personne ne dispose de toutes les informations. Or, pour pouvoir mettre en place un élément aussi puissant que les images responsives, il faut que le navigateur sache tout de l’image....et c’est justement ce à quoi sert SRCSET et SIZES! Srcset va le renseigner sur les dimensions de l’image, et sizes sur la place que sera concédé à l’image au sein de notre page.</p>
+
+<p>Regardons un exemple de code et analysons-le.
+<pre>
+<code>
+&lt;img src="small.jpg"
+     srcset="large.jpg 1024w,
+             medium.jpg 640w,
+             small.jpg 320w"
+     sizes="(min-width: 36em) 33.3vw,
+            100vw"
+     alt="A rad wolf" /&gt;
+</code>
+</pre></p>
+
+<p>La première ligne est assez banale et reconnaissable, elle renseigne sur la location de l’image.
+A la deuxième ligne, entre en scène SRCSET. Chaque ligne correspond à une surface d’image différente (large, moyen, petit). A la fin de chaque ligne se trouve ce que l’on appelle le descripteur. Ici “w” (1024w, 640w, 320w). Il renseigne sur la largeur de l’image. Grâce à cela, le navigateur sait maintenant, au chargement de la page, la taille de l’image finale et va pouvoir servir à l’utilisateur seulement celle dont son périphérique pourra jouir.</p>
+
+<p>Mais ce n’est pas fini, la spécification prévoit également un élément “sizes” qui va renseigner le navigateur sur la taille que prendra l’image au sein du viewport. Sizes est rédigé comme une media-query. Ici, on dit que : Pour tous les viewport qui font au minimum 36em de large, l’image prendra 33,3% de la largeur du viewport. Pour les écran plus petit à 36em, on l’affichera sur toute la largeur du viewport (100vw).</p>
+
+<p>C’est tout! Avec ces deux éléments, le navigateur devient super intelligent et délivre ainsi des images intelligentes.</p>
+
+<p>Petite démo avec le code précédent:</p>
+
+<img src="img/small.jpg"
+     srcset="img/large.jpg 1024w,
+             img/medium.jpg 640w,
+             img/small.jpg 320w"
+     sizes="(min-width: 36em) 33.3vw,
+            100vw"
+     alt="A rad wolf" />
+</div>
             </div>
         </div>
     </section>
