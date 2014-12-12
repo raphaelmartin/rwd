@@ -176,7 +176,7 @@ Grâce à toutes ces informations, nous pouvons maintenant comprendre la fameuse
 
 <p>62% de la taille du web n’est constitué que d’images, et nous en envoyons chaque jour toujours plus. Et pourtant, de toutes ces images, on en fait bien peu cas. En effet, même si on entend partout et tout le temps que le web est au “responsive”, que l’industrie entière a pris ce mouvement a bras le corps, les images ont littéralement été mise de côté de ce grand chamboulement. Leur seul possibilité, dans le code, est d’être coincé entre une balise < img > et son attribut src.<br>
 Etre une image ou ne pas être. C’est tout.<br>
-Bien évidemment, les développeurs avaient le choix. Soit ils rendaient leurs site moins décoré pour certains, ou soit plus lent pour tous. Ils ont choisi la dernière option, délivrant des images en résolution toujours plus grande. Ainsi, on peux parler de gâchis.</p>
+Bien évidemment, les développeurs avaient le choix. Soit ils rendaient leurs site moins décoré, ou soit plus lent pour tous. Ils ont choisi la dernière option, délivrant des images en résolution toujours plus grande. Ainsi, on peux parler de gâchis.</p>
 
 <h4>Au présent</h4>
 
@@ -190,7 +190,7 @@ Bien évidemment, les développeurs avaient le choix. Soit ils rendaient leurs s
 </code>
 </pre></p>
 
-<p>Tout ce qu’on dit ici c’est de réserver une boite de taille fixe et d’y mettre une image. En 2014, avec l’explosion des surfaces d’écran diverses et variées, l’arrivée des smartwatch, la pénétration du smartphone en milieux en développement, c’est tout ce que nous avons en HTML5/CSS.</p>
+<p>Tout ce qu’on dit ici c’est de réserver une boite de taille fixe et d’y mettre une image. En 2014, avec l’explosion des surfaces d’écran diverses et variées, l’arrivée des smartwatch, la pénétration du smartphone dans les pays en développement, c’est tout ce que nous avons en HTML5/CSS.</p>
 
 <p>Alors oui, tel Bootstrap, on peut rajouter un peu de “responsiveness”:
 
@@ -208,8 +208,8 @@ img {
 
 <p>Mais heureusement, car il faut bien une fin heureuse, quelques éléments commencent à émerger et vont sauver les images:<br>
 
-srcset / sizes<br>
-picture / source</p>
+- srcset / sizes<br>
+- picture / source</p>
 
 <h4>Au futur</h4>
 
@@ -306,6 +306,22 @@ A la deuxième ligne, entre en scène SRCSET. Chaque ligne correspond à une sur
 <source srcset="img/runner-narrow.jpg" media="(min-width: 500px)">
 <img src="img/runner-square.jpg" alt="Photograph of a man running along a pier at sunset, with a harbour in the background">
 </picture>
+</div>
+
+<div class="col-lg-8 col-lg-offset-2">
+<p><h4>Sans oublier....</h4></p>
+
+<p>Nous avons présenté les deux grands pilliers des images responsives qui, dans quelques années, deviendront très certainement la norme du web. Mais il ne faudrait pas oublier quelques outils que nous avons déjà et qui peuvent nous aider dans le paysage des images responsives.</p>
+
+<p>- le <strong>format SVG</strong><br>
+<figure>
+<img src="img/svg-logo.svg" alt="" width="100">
+</figure>
+<p>
+Autant que possible, pourquoi ne pas se passer des images basées sur le pixel? On a vu tout au long de cet article combien elles posent problème alors, si on peut les éviter, allons-y! Mais comment? En utilisant le format SVG, qui sont des images se basant sur des formules mathématiques : des vecteurs. Étant donné que l’image n’est faite que de formules mathématiques, elle est et très légère, et d’emblée responsive (agrandir ou réduire une image SVG ne consistant qu’à changer les chiffres des vecteurs).</p>
+
+<p>- les <strong>“fonts icons”</strong><br>
+Au lieu de contenir des caractères, ces polices contiennent des graphiques, malin! En plus d’être simple à mettre en place (via l’élément @font-face), elles offrent des performances très économiques. En effet, étant une police de caractère, celle-ci se charge en 1 seule requête HTTP. Plusieurs images chargés en 1 seule requête HTTP, c’est très proche de la technique des CSS sprite, et donc très intéressant.</p>
 </div>
 
 </div>
